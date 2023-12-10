@@ -1,0 +1,48 @@
+def add(mat1,mat2):
+    mat3 = [[0 for i in range(3)] for j in range(3)]
+    for i in range(3):
+        for j in range(3):
+            mat3[i][j]=mat1[i][j]+mat2[i][j]
+    return mat3
+            
+def sub(mat1,mat2):
+    mat3 = [[0 for i in range(3)] for j in range(3)]
+    for i in range(3):
+        for j in range(3):
+            mat3[i][j]=mat1[i][j]-mat2[i][j]
+    return mat3
+
+def mult(mat1,mat2):
+    mat3 = [[0,0,0],
+            [0,0,0],
+            [0,0,0]]
+    for i in range(3):
+        for j in range(3):
+            for k in range(3):
+                mat3[i][j] = mat3[i][j]+mat1[i][k]*mat2[k][j]
+    for res in mat3:
+        return mat3
+    
+    
+    
+def Trans(math1):
+    matT=[[0,0,0,],
+           [0,0,0,],
+           [0,0,0,]]
+    for i in range(3):
+        for j in range(3):
+            matT[i][j]=mat1[j][i]
+    return matT
+            
+
+mat1 = [[1,2,3],[4,5,6],[7,8,9]]
+mat2 = [[9,8,7],[6,5,4],[3,2,1]]
+choice = int(input("Your your choice :->"))
+if choice == 1:
+    print(add(mat1,mat2))
+elif choice == 2:
+     print(sub(mat1,mat2))
+elif choice == 3:
+    print(mult(mat1,mat2))
+elif choice == 4:
+    print(Trans(mat1))
