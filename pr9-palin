@@ -1,0 +1,128 @@
+#include <iostream>
+using namespace std;
+#define MAX_SIZE 100
+class CharStack {
+private:
+    char stack[MAX_SIZE];
+    int top;
+public:
+    CharStack() : top(-1) {}
+    void push(char val) {
+        if (top < MAX_SIZE - 1) {
+            stack[++top] = val;
+        } else {
+            cerr << "Stack is full. Stack Overflow!!!\n";
+        }
+    }
+
+    // Function to pop a character from the stack
+    char pop() {
+        if (!isEmpty()) {
+            int s = top;
+            top--;
+            return stack[s];
+            } else {
+            cerr << "Stack is empty. Cannot pop.\n";
+            return '\0'; // Return null character to indicate an empty stack
+        }
+    }
+
+    // Function to check if the stack is empty
+    bool isEmpty() {
+        return top == -1;
+    }
+};
+
+// Function to check if a string is a palindrome using a stack
+bool isPalindrome(string str) {
+    CharStack charStack;
+
+    // Push characters onto the stack (excluding non-alphanumeric characters)
+    for (char ch : str) { // for ch in str;
+            charStack.push(ch); // Convert to lowercase for case-insensitivity
+        
+    }
+
+    // Compare characters from the stack with characters in the second half of the string
+    for (char ch : str) {
+        
+            char stackTop = charStack.pop();
+
+            if (ch != stackTop) {
+                return false; // Not a palindrome
+            
+        }
+    }
+
+    return true; // Palindrome
+}
+void Reversed(string str) {
+    CharStack charStack;
+
+    // Push characters onto the stack
+    for (char ch : str) {
+        charStack.push(ch);
+    }
+
+    // Print original string
+    cout << "Original String: " << str << endl;
+
+    // Print reversed string
+    cout << "Reversed String: ";
+    while (!charStack.isEmpty()) {
+        cout << charStack.pop();
+    }
+    cout << endl;
+}
+
+int main() {
+    string input;
+    cout << "Enter a string: ";
+    getline(cin, input);
+    Reversed(input);
+
+    if (isPalindrome(input)) {
+        cout << "The string is a palindrome." << endl;
+    } else {
+        cout << "The string is not a palindrome." << endl;
+    }
+
+    return 0;
+}
+//another approach
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+class palin{
+ public:
+ int top;
+ char arr[50];
+ palin(){
+    top=-1;
+ }
+ void push(char c){
+   arr[++top]=c;
+ }
+ char pop(){
+    return arr[top--];
+ }
+};
+int main(){
+ string s,rev="";
+ palin p;
+ cout<<"Enter string : ";
+ cin>>s;
+ for(char ch:s){
+  p.push(ch);
+ }
+ for(char ch:s){
+     rev=rev+p.pop();
+ }
+ cout<<"Orginal String and reversed Strings:\n"<<s<<' '<<rev<<endl;
+ if(s==rev)
+    cout<<"Given String is Palindrome";
+ else
+  cout<<"Given String is not Palindrome";
+}
