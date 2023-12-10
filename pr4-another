@@ -1,0 +1,31 @@
+def linear(students,rollno):
+ for i in range(n):
+   if students[i]==rollno:
+      return True
+ return False
+
+def sentinal(students,rollno):
+ students.append(rollno)
+ i=0
+ while(students[i]!=rollno):
+   i=i+1
+ if i==n:
+   return False
+ else:
+   return True
+
+n=int(input("Number of students who attended the training program :"))
+students=[]
+for i in range(n):
+ students.append(int(input("•")))
+rollno=int(input("\nRoll number of student to search for using linear search :"))
+if linear(students,rollno):
+  print(f"{rollno} attended the training program")
+else:
+  print(f"{rollno} didn't attend the training program")
+
+rollno=int(input("\nRoll number of student to search for using sentinal search :")) 
+if sentinal(students,rollno):
+  print(f"{rollno} attended the training program")
+else:
+  print(f"{rollno} didn't attend the training program")
