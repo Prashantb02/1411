@@ -1,0 +1,49 @@
+def insertion(percentages):
+  for i in range(1,n):
+    key = percentages[i]
+    j = i-1
+    while j >= 0 and key < percentages[j] :
+      percentages[j + 1] = percentages[j]
+      j =j- 1
+      percentages[j + 1] = key
+  return percentages
+def shell(percentages):
+ gap=n//2           
+ while gap>0: 
+  j=gap 
+  while j<n: 
+    i=j-gap
+    while i>=0: 
+      if percentages[i+gap]>percentages[i]: 
+        break
+      else: 
+        percentages[i+gap],percentages[i]=percentages[i],percentages[i+gap] 
+      i=i-gap
+    j=j+1
+  gap=gap//2
+ return percentages
+
+def choose(percentages):
+ choice=int(input("Select option:\n1)Insertion Sort\n2)Shell sort\n3)Exit\n->"))
+ match choice:
+    case 1:
+        insertion(percentages)
+    case 2:
+        shell(percentages)
+    case 3:
+        print("Exited")
+        exit()
+    case _ :
+         print("Please enter valid option\n")
+         choose(percentages)
+def topfive(percentages):
+  print("Top five students are:")
+  top_five=percentages[-5:]
+  for i in range(1,6):
+    print(f"{i}){top_five[5-i]}")
+n=int(input("Number of Students:"))
+percentages=[]
+for i in range(n):
+    percentages.append(float(input("•")))
+choose(percentages)
+topfive(percentages)
