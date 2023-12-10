@@ -1,0 +1,194 @@
+#include<iostream>
+using namespace std;
+struct node{
+    int PRN;
+    string name;
+    node* next;
+    node(){next=nullptr;}
+    node(int PRN,string name)
+    {
+        this->PRN=PRN;
+        this->name=name;
+        this->next=nullptr;
+    }
+};
+class linkedlist{
+    public:
+    node* header=new node();
+    node* create_node(){
+      int prn; string name;
+      cout<<"PRN:";
+      cin>>prn;
+      cout<<"Name:";
+      cin>>name;
+      node* newnode= new node(prn,name);
+      return newnode;
+    }
+    void create_list(){
+        int n,prn;node*temp;string name;
+        cout<<"Enter the number of members in the list including president and secretary:";
+        cin>>n;
+        cout<<"Enter the details of President"<<endl;
+        cout<<"PRN:";
+        cin>> header->PRN;
+        cout<<"Name:";
+        cin>> header->name;
+        temp=header;
+        cout<<"ntr the details of other members";
+        for(int i=1;i<n-1;i++){
+            cout<<"ntr details of memebr"<<i<<endl;
+            temp->next=create_node();
+            temp=temp->next;
+        }
+        cout<<"enter details of secretary:";
+        temp->next=create_node();
+    }
+    void inpres(){
+        node*temp;
+        temp=create_node();
+        temp->next= header;
+        header=temp;
+        cout<<"New President added"<<endl;
+    }
+    void insec(){
+        node*temp,*newnode;
+        newnode=create_node();
+        temp= header;
+        while(temp->next!=nullptr){
+             temp=temp->next;
+        }
+        temp->next=newnode;
+        cout<<"New Secretary added"<<endl;
+    }
+    void inmem(){
+        node* newnode,*temp;
+        cout<<"emeber details";
+        temp= header;
+        while(temp->next->next!=nullptr){
+            temp=temp->next;
+        }
+        newnode->next=temp->next;
+        temp->next=newnode;
+        cout<<"memeber added";
+
+    }
+    void delpre(){
+        node*temp;
+        temp=header;
+        header=temp->next;
+        delete temp;
+        cout<<"President deleted"<<endl;
+    }
+    void delsec(){
+        node*temp,*dltnode;
+        temp=header;
+        while(temp->next->next!=nullptr)
+        {
+            temp=temp->next;
+        }
+        dltnode=temp->next;
+        temp->next=nullptr;
+        delete dltnode;
+        cout<<"Secretary deleted"<<endl;
+    }
+    void delmem(){
+        int prn;node *temp,*delnode;
+      cout<<"Enter PRN number of member to delete:";
+      cin>>prn;
+      temp=header;
+      while(temp->next!=nullptr){
+        if(temp->next->PRN==prn){
+            break;
+        }
+        temp=temp->next;
+      }
+      if(temp->next!=nullptr){
+         delnode=temp->next;
+         temp->next=delnode->next;
+         delete delnode;
+         cout<<"Member deleted"<<endl;
+      }else{
+        cout<<"No member with that PRN number exists\nEnter again"<<endl;
+        delmem();
+      }
+    }
+    int total()//Function to calculate size of list
+    {node *temp;int count=0;
+    temp=header;
+    while(temp!=nullptr){
+     temp=temp->next;
+     count++;
+    }
+ return count;
+    }
+    void display()
+    { node* temp=header;
+    cout<<"Displaying member list"<<endl;
+    while(temp!=nullptr){
+        cout<<temp->PRN<<" "<<temp->name<<endl;
+        temp=temp->next;
+    }
+    }
+};
+int main()
+{
+    linkedlist ll;
+    ll.create_list();
+    int ch;
+    while(true)
+    {
+    cout<<"\nEnter number of action to perform:"<<endl;
+    cout<<"1.Add the members as well as president or even secretary"<<endl;
+    cout<<"2.Delete the members as well as president or even secretary"<<endl;
+    cout<<"3.Compute total number of members of club"<<endl;
+    cout<<"4.Display members"<<endl;
+    cout<<"5.Exit Program"<<endl;
+    cin>>ch;
+    switch (ch)
+    {
+    case 1:
+         int option;
+    cout<<"Select option to add:"<<endl;
+           cout<<"1.President"<<endl;
+           cout<<"2.Secretary"<<endl;
+           cout<<"Press any number to add Member"<<endl;
+           cin>>option;
+           if(option==1){
+            ll.inpres();
+           }
+           else if (option==2)
+           {
+            ll.insec();
+           }else{
+            ll.inmem();
+           }          
+            break;
+        break;
+    case 2: 
+    cout<<"Select option to delete:"<<endl;
+           cout<<"1.President"<<endl;
+           cout<<"2.Secretary"<<endl;
+           cout<<"Press any number to delete Member"<<endl;
+           cin>>option;
+           if(option==1){
+            ll.delpre();
+           }
+           else if (option==2)
+           {
+            ll.delsec();
+           }else{
+            ll.delmem();
+           }          
+            break;
+    case 3:cout<<"Total number of members of club is "<<ll.total()<<endl;
+        break;
+    case 4:ll.display();
+        break;
+    case 5:cout<<"Exiting program...";
+        return 0;
+    default: cout<<"Enter correct option"<<endl;
+        break;
+    }
+    }
+
+};    
