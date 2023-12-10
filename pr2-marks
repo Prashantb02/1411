@@ -1,0 +1,45 @@
+marks=[]
+n=int(input("Enter the number of students:"))
+print('Enter the marks scored by students in FDS Exam')
+for i in range(n):
+    numbers=int(input('•'))
+    marks.append(numbers)
+print(f"The marks scored by students are:\n{marks}")
+
+sum=0
+for i in marks:
+    sum+=i
+average=sum/n
+print(f'The average score of class is:{average}')
+
+max=marks[0]
+for i in marks:
+    if max<i:
+        max=i
+print(f'the hishest score if class is:{max}')
+
+min=marks[0]
+for i in marks:
+    if min>=i:
+        min=i
+print(f'the lowest score of class is:{min}')
+
+count=0
+for i in marks:
+    if i==0:
+        count+=1
+print(f'the total no. of absent students for exam are:{count}')
+
+
+num=1
+for i in marks:
+    count=0
+    for j in marks:
+        if i==j:
+            count+=1
+    if count>num:
+        num=count        
+        highest=i    
+print(f"the marks with highest frequency is:{highest}")
+
+    
