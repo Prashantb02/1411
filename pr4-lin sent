@@ -1,0 +1,40 @@
+def linear(array,se):
+    for i in array:
+        if i==se:
+            return True
+    return False
+def sentinal(array,se):
+    array.append(se)
+    c=0
+    for i in array:
+        c=c+1
+        if i==se:
+            break
+    if c==len(array):
+        return False
+    else:
+        return True
+
+rollnos=[]
+print("Enter total number of students :")
+n=int(input())
+print("Enter roll numbers")
+for i in range(n):
+    rollnos.append(int(input()))
+print("Enter roll number to search for")
+search=int(input())
+print("Enter choice to search with")
+print("1)Linear")
+print("2)Sentinal")
+print("or exit")
+choice=int(input())
+if choice==1:
+    if linear(rollnos,search):
+        print("Present")
+    else:
+        print("absent")
+elif choice==2:
+    if sentinal(rollnos,search):
+        print("present")
+    else:
+        print("ab")
