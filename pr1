@@ -1,0 +1,59 @@
+def inputlist(sports_name,sports):
+    number=int(input(f"enter the number of students playing {sports_name}"))
+    print(f"enter the nmaes of students playing {sports_name}")
+    for i in range(number):
+      exists=True
+      while(exists==True):
+          name=input('•')
+          if name not in sports:
+             exists=False
+          else:  
+             print("please dont enter duplicate entries")
+          sports.append(name)
+    return sports
+def cricket_badminton(cricket,badminton):
+    common=[]
+    for i in cricket:
+        if i in badminton:
+            common.append(i)
+    print(f'the list of students playing both cricket and badminton:\n')      
+    print(common)    
+def cricket_badminton_notboth(cricket,badminton):
+    not_com=[]
+    for i in cricket:
+        if i not in badminton:
+            not_com.append(i)
+    for i in badminton:
+            if i not in cricket:
+                not_com.append(i)
+    print(not_com)
+def norcb(cricket,badminton,football):
+    neither=[]
+    for i in football:
+        if i not in cricket and i not in badminton:
+            neither.append(i)
+    print(len(neither))
+def cf(cricket,badminton,football):
+    cfnotb=[]
+    for i in cricket:
+        if i not in badminton:
+            cfnotb.append(i)
+    for i in football:
+        if i not in badminton:
+            cfnotb.append(i)
+    print(len(cfnotb))
+cricket=[]
+badminton=[]
+football=[]
+inputlist('cricket',cricket)
+inputlist('badminton',badminton)
+inputlist('football',football)
+cricket_badminton(cricket,badminton)
+cricket_badminton_notboth(cricket,badminton)
+norcb(cricket,badminton,football)
+cf(cricket,badminton,football)
+
+
+
+
+
